@@ -1,18 +1,44 @@
+use clap::{Parser, Subcommand};
+
+use crate::kafka::{run_consumer, run_producer};
 mod kafka;
+mod model;
 
-use clap::Parser;
-
-#[derive(Parser, Debug)]
-#[command(name = "Kafka CLI", version, about = "Run Kafka producer or consumer")]
+/// Kafka CLI App
+#[derive(Parser)]
+#[command(
+    name = "Test App",
+    version = "1.0",
+    about = "Runs a Kafka producer or consumer"
+)]
 struct Cli {
+    /// Kafka broker address, e.g., localhost:9092
     #[arg(short, long, default_value = "localhost:9092")]
-    broker: Option<String>,
+    broker: String,
+
+    #[command(subcommand)]
+    command: Commands,
 }
 
-fn main() {
+#[derive(Subcommand)]
+enum Commands {
+    /// Run the Kafka producer
+    Producer,
+
+    /// Run the Kafka consumer
+    Consumer,
+}
+
+#[tokio::main]
+async fn main() {
     let cli = Cli::parse();
 
-    if let Some(broker) = cli.broker.as_deref() {
-        println!("Value for {broker}");
+    match cli.command {
+        Commands::Producer => {
+            run_producer(&cli.broker).await;
+        }
+        Commands::Consumer => {
+            run_consumer(&cli.broker).await;
+        }
     }
 }
