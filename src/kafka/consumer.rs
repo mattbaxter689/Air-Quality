@@ -1,9 +1,8 @@
+use crate::model::AirQualityHourly;
 use rdkafka::config::ClientConfig;
 use rdkafka::consumer::{Consumer, StreamConsumer};
 use rdkafka::message::Message;
 use tokio_stream::StreamExt;
-
-use crate::model::HelloMessage;
 
 pub async fn run_consumer(broker: &str) {
     let consumer: StreamConsumer = ClientConfig::new()
@@ -27,8 +26,8 @@ pub async fn run_consumer(broker: &str) {
                 let payload_result = msg.payload_view::<str>();
 
                 match payload_result {
-                    Some(Ok(payload)) => match serde_json::from_str::<HelloMessage>(payload) {
-                        Ok(parsed) => println!("[Consumer] Received: {}", parsed.message),
+                    Some(Ok(payload)) => match serde_json::from_str::<AirQualityHourly>(payload) {
+                        Ok(parsed) => println!("[Consumer] Received: {}", parsed),
                         Err(e) => eprintln!("[Consumer] JSON error: {:?}", e),
                     },
                     None => eprintln!("[Consumer] No payload found"),
