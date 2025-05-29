@@ -8,8 +8,14 @@ pub struct LocationConfig {
 }
 
 #[derive(Debug, Deserialize)]
+pub struct DBConfig {
+    pub db_url: String,
+}
+
+#[derive(Debug, Deserialize)]
 pub struct AppConfig {
     pub location: LocationConfig,
+    pub database: DBConfig,
 }
 
 pub fn load_config() -> Result<AppConfig, config::ConfigError> {

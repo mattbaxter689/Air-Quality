@@ -44,7 +44,6 @@ pub async fn run_producer(broker: &str) {
                     let record = FutureRecord::to("weather-data")
                         .payload(&batch_payload)
                         .key("key");
-                    println!("{}", batch_payload);
                     match producer.send(record, Duration::from_secs(0)).await {
                         Ok(delivery) => println!("[Producer] Delivered: {:?}", delivery),
                         Err((e, _)) => eprintln!("[Producer] Error: {:?}", e),
