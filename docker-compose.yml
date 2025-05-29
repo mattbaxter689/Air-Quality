@@ -29,22 +29,44 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     networks:
       - kafka-net
-  rust-producer:
-    container_name: rust-producer
-    build:
-      context: .
-    image: rust_kafka:latest
-    command: [ "--broker", "kafka:29092", "producer" ]
-    networks:
-      - kafka-net
 
-  rust-consumer:
-    container_name: rust-consumer
-    image: rust_kafka:latest
-    command: [ "--broker", "kafka:29092", "consumer" ]
+  # Service for postgres. Do not bind data yet, and save on healthcheck
+  kafka_postgres:
+    image: timescale/timescaledb:latest-pg16
+    container_name: kafka_timescale
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - ./docker/init_db_schema.sql:/docker-entrypoint-initdb.d/init_db_schema.sql
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
     networks:
       - kafka-net
+  # Commenting this out to prevent building rust containers when testing locally
+  # rust-producer:
+  #   container_name: rust-producer
+  #   build:
+  #     context: .
+  #   image: rust_kafka:latest
+  #   command: [ "--broker", "kafka:29092", "producer" ]
+  #   networks:
+  #     - kafka-net
+
+  # rust-consumer:
+  #   container_name: rust-consumer
+  #   image: rust_kafka:latest
+  #   command: [ "--broker", "kafka:29092", "consumer" ]
+  #   networks:
+  #     - kafka-net
 
 networks:
   kafka-net:
     driver: bridge
+
+volumes:
+  rust_kafka:
+    driver: local
+  pgdata:

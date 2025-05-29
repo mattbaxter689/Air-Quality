@@ -1,6 +1,7 @@
 use clap::{Parser, Subcommand};
 
 use crate::kafka::{run_consumer, run_producer};
+mod config;
 mod kafka;
 mod model;
 
