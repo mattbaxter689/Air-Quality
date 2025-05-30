@@ -30,7 +30,6 @@ services:
     networks:
       - kafka-net
 
-  # Service for postgres. Do not bind data yet, and save on healthcheck
   kafka_postgres:
     image: timescale/timescaledb:latest-pg16
     container_name: kafka_timescale
@@ -45,6 +44,7 @@ services:
       - 5432:5432
     networks:
       - kafka-net
+
   # Commenting this out to prevent building rust containers when testing locally
   # rust-producer:
   #   container_name: rust-producer
