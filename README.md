@@ -24,7 +24,14 @@ I would like to do the following eventually:
 - Improve code readability and deduplicate functionality by using generics and
   traits to implement retry functionality on API requests and sql INSERT
   statements, along with specifying default configurations for Kafka setup, etc
-
+It is also important to note, that when the service is deployed using docker,
+you need to ensure that the database URL is properly referencing the correct
+database. The postgres database for this project is launched as part of the same
+network as Kafka, and the producer and consumer code. Therefore, the database
+host in this docker container is kafka_timescale as that is the name of the
+container on the network. This is ONLY for when we are deploying the produer and
+consumer on docker. Otherwise, we can use localhost when testing locally, or
+accessing outside of this docker network.
 
 ### Upon Completion Enhancements
 Once I am satisfied with the main goal of this project, I'll look to other ways
