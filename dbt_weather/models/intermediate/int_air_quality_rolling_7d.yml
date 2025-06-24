@@ -1,0 +1,90 @@
+version: 2
+
+models:
+  - name: int_air_quality_rolling_7d
+    description: >
+      Intermediate model calculating 7-day rolling averages for air quality pollutants.
+    columns:
+      - name: _time
+        description: "UTC timestamp for each measurement window."
+        tests:
+          - not_null
+          - unique
+
+      - name: pm10_rolling_7d
+        description: "7-day rolling average of PM10 concentration (µg/m³)."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: pm2_5_rolling_7d
+        description: "7-day rolling average of PM2.5 concentration (µg/m³)."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: carbon_monoxide_rolling_7d
+        description: "7-day rolling average of carbon monoxide concentration (ppm)."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: carbon_dioxide_rolling_7d
+        description: "7-day rolling average of carbon dioxide concentration (ppm)."
+        tests: []
+
+      - name: nitrogen_dioxide_rolling_7d
+        description: "7-day rolling average of nitrogen dioxide concentration (ppm)."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: sulphur_dioxide_rolling_7d
+        description: "7-day rolling average of sulphur dioxide concentration (ppm)."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: ozone_rolling_7d
+        description: "7-day rolling average of ozone concentration (ppm)."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: methane_rolling_7d
+        description: "7-day rolling average of methane concentration (ppm)."
+        tests: []
+
+      - name: uv_index_rolling_7d
+        description: "7-day rolling average of UV index."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: dust_rolling_7d
+        description: "7-day rolling average of dust concentration or index."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: aerosol_optical_depth_rolling_7d
+        description: "7-day rolling average of aerosol optical depth."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: us_aqi_rolling_7d
+        description: "7-day rolling average of US Air Quality Index."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0

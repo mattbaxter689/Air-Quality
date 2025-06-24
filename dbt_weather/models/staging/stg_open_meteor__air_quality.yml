@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: stg_open_meteo__air_quality
+    description: >
+      Cleaned and structured air quality data sourced from the Open-Meteo Air Quality API.
+    columns:
+      - name: _time
+        description: "UTC timestamp of the measurement."
+        tests:
+          - not_null
+          - unique
+
+      - name: pm10
+        description: "PM10 concentration in µg/m³ (coarse particles)."
+        tests:
+          - not_null
+
+      - name: pm2_5
+        description: "PM2.5 concentration in µg/m³ (fine particles)."
+        tests:
+          - not_null
+
+      - name: carbon_monoxide
+        description: "Carbon monoxide concentration in ppm."
+        tests:
+          - not_null
+
+      - name: carbon_dioxide
+        description: "Carbon dioxide concentration in ppm."
+        tests: []
+
+      - name: nitrogen_dioxide
+        description: "Nitrogen dioxide concentration in ppm."
+        tests:
+          - not_null
+
+      - name: sulphur_dioxide
+        description: "Sulphur dioxide concentration in ppm."
+        tests:
+          - not_null
+
+      - name: ozone
+        description: "Ozone concentration in ppm."
+        tests:
+          - not_null
+
+      - name: methane
+        description: "Methane concentration in ppm."
+        tests: []
+
+      - name: uv_index
+        description: "UV index at the given time."
+        tests:
+          - not_null
+
+      - name: dust
+        description: "Dust concentration or index (unit depends on source)."
+        tests:
+          - not_null
+
+      - name: aerosol_optical_depth
+        description: "Aerosol optical depth — a measure of particle density in the atmosphere."
+        tests:
+          - not_null
+
+      - name: us_aqi
+        description: "US AQI (Air Quality Index) calculated from various pollutant concentrations."
+        tests:
+          - not_null
