@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: mart_monthly_avg_pollutants
+    description: >
+      "Monthly average PM2.5 and PM10 values using 24-hour rolling averages from the air quality fact table"
+    columns:
+      - name: year
+        description: "Calendar year from dim_date"
+        tests:
+          - not_null
+
+      - name: month
+        description: "Month number from dim_date"
+        tests:
+          - not_null
+
+      - name: avg_pm2_5
+        description: "Average 24-hour rolling PM2.5 concentration for the month"
+
+      - name: avg_pm10
+        description: "Average 24-hour rolling PM10 concentration for the month"

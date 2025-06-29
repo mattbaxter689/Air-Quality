@@ -11,7 +11,23 @@ services:
       - grafana-storage:/var/lib/grafana
     networks:
       - rust_kafka_kafka-net
-
+    
+  dbt_weather:
+    container_name: dbt_weather
+    build:
+      context: .
+    environment:
+      - DBT_TARGET=prod
+      - DBT_PROFILES_DIR=/root/.dbt
+    volumes:
+      - .:/usr/app
+      - ./profiles.yml:/root/.dbt/profiles.yml
+      - ./target:/usr/app/target
+    tty: true
+    stdin_open: true
+    networks:
+      - rust_kafka_kafka-net
+    
 volumes:
   grafana-storage:
 

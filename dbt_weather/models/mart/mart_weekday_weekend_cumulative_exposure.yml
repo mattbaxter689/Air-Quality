@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: mart_weekday_weekend_cumulative_exposure
+    description: >
+      Mart model comparing rolling pollutant averages on weekdays vs weekends
+    columns:
+      - name: is_weekend
+        description: "Boolean stating if day is weekday or weekend"
+        tests:
+          - not_null
+          - unique
+
+      - name: cumulative_pm2_5
+        description: "Cumulative sum of 24-hour cumulative exposure by weekday vs weekend of PM2.5 concentration"
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: cumulative_pm10
+        description: "Cumulative sum 24-hour cumulative exposure by weekday vs weekend of PM10 concentration"
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0

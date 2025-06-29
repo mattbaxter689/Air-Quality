@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: fct_air_quality_measurements
+    description: >
+      Fact model grabbing 24 hour rolling average calculations
+    columns:
+      - name: _time
+        description: "UTC timestamp for each measurement window."
+        tests:
+          - not_null
+          - unique
+
+      - name: pm10_rolling_24h
+        description: "24-hour rolling average of PM10 concentration (µg/m³)."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: pm2_5_rolling_24h
+        description: "24-hour rolling average of PM2.5 concentration (µg/m³)."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0

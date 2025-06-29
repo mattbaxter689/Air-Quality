@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: "Calendar dimension generated from air quality data range"
+    columns:
+      - name: day_date
+        description: "The date value (primary key)"
+        tests:
+          - not_null
+          - unique
+
+      - name: year
+        description: "4-digit calendar year"
+
+      - name: month
+        description: "Month number (1-12)"
+
+      - name: month_name
+        description: "Full name of the month (e.g., 'January')"
+
+      - name: day_of_month
+        description: "Day of the month (1-31)"
+
+      - name: day_of_week
+        description: "Day of the week as number (0=Sunday, 6=Saturday)"
+
+      - name: day_name
+        description: "Full name of the day (e.g., 'Monday')"
+
+      - name: is_weekend
+        description: "Boolean flag for Saturday or Sunday"
+        tests:
+          - accepted_values:
+              values: [true, false]

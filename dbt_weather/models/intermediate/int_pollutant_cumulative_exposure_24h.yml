@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: int_pollutant_cumulative_exposure_24h
+    description: >
+      Intermediate model calculating 24-hour cumulative exposure for some air pollutants.
+    columns:
+      - name: _time
+        description: "UTC timestamp for each measurement window."
+        tests:
+          - not_null
+          - unique
+
+      - name: pm10_cumulative_24h
+        description: "24-hour cumulative sum of PM10 concentration (µg/m³)."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0
+
+      - name: pm2_5_cumulative_24h
+        description: "24-hour cumulative sum of PM2.5 concentration (µg/m³)."
+        tests:
+          - not_null
+          - numeric_bounds:
+              min_value: 0

@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: mart_monthly_total_exposure
+    description: >
+      "Monthly total PM2.5 and PM10 values using 24-hour cumulative sum from the air quality fact table"
+    columns:
+      - name: year
+        description: "Calendar year from dim_date"
+        tests:
+          - not_null
+
+      - name: month
+        description: "Month number from dim_date"
+        tests:
+          - not_null
+
+      - name: cumulative_pm2_5
+        description: "Average 24-hour rolling PM2.5 concentration for the month"
+
+      - name: cumulative_pm10
+        description: "Average 24-hour rolling PM10 concentration for the month"

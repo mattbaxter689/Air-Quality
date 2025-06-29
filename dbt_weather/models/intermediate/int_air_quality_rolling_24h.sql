@@ -1,3 +1,5 @@
+{{ config(materialized="table") }}
+
 with cte as (
     select _time,
         pm10,
