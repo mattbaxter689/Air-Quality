@@ -66,11 +66,11 @@ def determine_retrain_strategy(result_dict: dict[str, Any], drift_threshold: flo
 @flow(log_prints=True)
 def run_model_drift_flow():
     logger = get_run_logger()
-    ref_df, curr_df = load_data_to_check()
-    result = check_data_drift(ref_df=ref_df, curr_df=curr_df)
-    retrain_type = determine_retrain_strategy(result_dict=result)
+    # ref_df, curr_df = load_data_to_check()
+    # result = check_data_drift(ref_df=ref_df, curr_df=curr_df)
+    # retrain_type = determine_retrain_strategy(result_dict=result)
 
-    logger.info(f"Model requiring: {retrain_type}")
+    # logger.info(f"Model requiring: {retrain_type}")
     client = docker.from_env()
 
     try:
