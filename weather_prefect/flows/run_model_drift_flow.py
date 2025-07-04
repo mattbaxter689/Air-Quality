@@ -69,28 +69,29 @@ def run_model_drift_flow():
     ref_df, curr_df = load_data_to_check()
     result = check_data_drift(ref_df=ref_df, curr_df=curr_df)
     retrain_type = determine_retrain_strategy(result_dict=result)
-    logger.info(retrain_type)
-    # client = docker.from_env()
 
-    # try:
-    #     container = client.containers.run(
-    #         image="torch_weather-weather_model:latest",
-    #         command=["uv", "run", "main.py"],
-    #         remove=True,
-    #         detach=True,
-    #         network="rust_kafka_kafka-net",
+    logger.info(f"Model requiring: {retrain_type}")
+    client = docker.from_env()
+
+    try:
+        container = client.containers.run(
+            image="torch_weather-weather_model:latest",
+            command=["uv", "run", "main.py"],
+            detach=True,
+            network="rust_kafka_kafka-net",
             
-    #     )
-    #     result = container.wait()
-    #     logs = container.logs().decode()
-    #     logger.info(logs)
+        )
+        result = container.wait()
+        logs = container.logs().decode()
+        logger.info(logs)
 
-    #     if result["StatusCode"] != 0:
-    #         raise RuntimeError(
-    #             f"Model training failed with {result['StatusCode']}"
-    #         )
-    #     logger.info("Model fit completed successfully.")
+        if result["StatusCode"] != 0:
+            raise RuntimeError(
+                f"Training failed with {result['StatusCode']}"
+            )
+        logger.info("Training completed successfully.")
+        container.remove()
 
-    # except Exception as e:
-    #     logger.error(f"Error running model fit container: {e}")
-    #     raise
+    except Exception as e:
+        logger.error(f"Error running Training container: {e}")
+        raise
