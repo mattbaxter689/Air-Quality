@@ -14,6 +14,7 @@ services:
     environment:
       - PREFECT_API_URL=http://prefect-server:4200/api
       - DOCKER_HOST=unix:///var/run/docker.sock
+      - DATABASE_URL=${DATABASE_URL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:

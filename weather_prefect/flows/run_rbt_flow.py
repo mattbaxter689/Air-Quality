@@ -11,7 +11,6 @@ def run_dbt_flow():
         container = client.containers.run(
             image="dbt_weather-dbt_weather:latest",
             command=["uv", "run", "dbt", "run"],
-            remove=True,
             detach=True,
             network="rust_kafka_kafka-net",
             environment={
@@ -28,6 +27,7 @@ def run_dbt_flow():
                 f"DBT run failed with code {result['StatusCode']}"
             )
         logger.info("DBT completed successfully.")
+        container.remove()
 
     except Exception as e:
         logger.error(f"Error running DBT container: {e}")

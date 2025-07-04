@@ -10,8 +10,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-RUN pip install prefect-docker
-RUN pip install docker
+RUN pip install prefect-docker docker evidently psycopg2-binary SQLAlchemy pandas
 
 COPY flows flows
 COPY deploy.py deploy.py
