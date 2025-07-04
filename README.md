@@ -12,30 +12,40 @@ this application. The subdirectories here do the following:
 
 The inspiration for this project comes from my wife and I both having sensitive
 allergies, with the goal to predict air quality, and hopefully one day, expand
-to pollen information should it become available.
+to pollen information should it become available. I have also worked with this
+type of flow in separate stages cross different projects, but I wanted to set
+something up from end-to-end to prove to myself that I can do it, since imposter
+syndrome can bog you down.
 
-### Rust Kafka
-This directory has a focus on streaming data from the Open-Meteo historical air
-quality API to a Timescale database instance using Rust and Kafka. It streams
-data from January 1, 2023 (As this is when historical data was returning actual
-information) to the current date. I'm fine with the state it is in now, however
-I would like to do the following eventually:
-- Add logging to the codebase rather than print statements
-- Improve code readability and deduplicate functionality by using generics and
-  traits to implement retry functionality on API requests and sql INSERT
-  statements, along with specifying default configurations for Kafka setup, etc
-It is also important to note, that when the service is deployed using docker,
-you need to ensure that the database URL is properly referencing the correct
-database. The postgres database for this project is launched as part of the same
-network as Kafka, and the producer and consumer code. Therefore, the database
-host in this docker container is kafka_timescale as that is the name of the
-container on the network. This is ONLY for when we are deploying the produer and
-consumer on docker. Otherwise, we can use localhost when testing locally, or
-accessing outside of this docker network.
+Each repository will contain a separate README file that will dive into what it
+handles and how to run everything.
 
-### Upon Completion Enhancements
-Once I am satisfied with the main goal of this project, I'll look to other ways
-to enhance the application. Some that come to mind are:
-- DBT for data modelling and transformation
-- Grafana to view historical time-series data for air quality
-- Dagster or prefect to orchestrate the code of the various repositories
+### Future Enhancements:
+Now, just because this project is "finished" does not mean I am going to leave
+it alone from here on. Instead, I want to use this project as a focal point, and
+continuously improve upon it as time goes on. It is technically "finished" from
+my initial designs for the project, however there are improvements I want to
+make that didn't fit in the initial scope of the project. For now, I will list
+them hear for each directory
+
+#### torch_weather
+ - [ ] Including real-time predictions using kafka streaming. Will result in
+   backfilling predictions with actual data to compare as time goes on
+ - [ ] Warm vs cold starts: Depending on the amount of drift detected (from
+   evidently) warm or cold start the model. Cold start on everything, warm start
+   on 120 days of data using previous model parameters. Log parameters of final
+   model, and inject variable to image to use
+ - [ ] multi-output LSTM rather than single target.
+
+ #### rust_kafka
+- [ ] Add persistable trait for the database insert functionality
+- [ ] Add a generic retry function for API and database inserts
+- [ ] Add streaming for 12 past hours to predict next hours AQI
+
+#### dbt_weather
+- [ ] Add lag models comparing previous time stamps data
+- [ ] add models to flag if delta meets threshold
+- [ ] Add API logs to grafana application
+
+I also want to look to potentially include github actions, but want to finish
+everything else before I jump to this. Although, time will tell
