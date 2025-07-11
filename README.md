@@ -20,6 +20,14 @@ syndrome can bog you down.
 Each repository will contain a separate README file that will dive into what it
 handles and how to run everything.
 
+## Note: uv Package Manager
+Something I wish to highlight is that for the dbt, pytorch model, and API code,
+I make use of the uv Python package manager. This has been an excellent tool and
+is fantastic at setting up and maintaining my Python environments. The only
+reason it is not part of the prefect code is the prefect Docker image being used
+just needs a few additional packages added, and I did not want to go through the
+headache of configuring uv in that environment.
+
 ### Future Enhancements:
 Now, just because this project is "finished" does not mean I am going to leave
 it alone from here on. Instead, I want to use this project as a focal point, and
