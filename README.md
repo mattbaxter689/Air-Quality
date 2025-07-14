@@ -62,3 +62,9 @@ Another *VERY* important thing for me to remember is to also move everything out
 of a mono repo like this. Instead, It should all be their own individual repo's
 for CI/CD to work properly. My plan is to use submodules/trees to link this repo
 to the sub repo's
+
+I would also like to possibly explore cloud infrastructure for parts of this
+application at some point. Whether it's spinning up the TimescaleDB instance or
+Grafana, I'd like to explore cloud to host to dip my toes back into it again
+after not touching it for some time. I can also explain as time goes on how each
+service could be deployed as well
