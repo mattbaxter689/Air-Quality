@@ -28,3 +28,8 @@ For a beginning iteration, I am overally fairly happy with how things have turne
 To incorporate a visual component to this project, and to explore the distributions and data that is part of this, I have set up a Grafana dashboard to explore these dbt models, as well as time series data. It's especially important when creating the models that I actually have something to show. I've included an example image below showing some of the data contained in the dashboard. Like above, I wish to expand upon this as time goes on, inluding other dbt models as part of this entire process.
 
 Eventually, I would also like to add Loki and Promtail to this project, as well as the pytorch API, so that we can observe logs for individual requests, and create dashboards for log data to get a better understanding of API performance. Overall, these visualizations just provide a better story about the data itself, and API performance as a whole
+
+Regardless, here is a very zoomed out version of the dashboard. As I initially
+said, this dashboard is incredibly simple, but will improve over time
+
+![Air Quality Dashboard](./static/dashboard.png)

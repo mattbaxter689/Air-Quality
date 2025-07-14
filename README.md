@@ -56,4 +56,9 @@ them hear for each directory
 - [ ] Add API logs to grafana application
 
 I also want to look to potentially include github actions, but want to finish
-everything else before I jump to this. Although, time will tell
+everything else before I jump to this. Although, time will tell. 
+
+Another *VERY* important thing for me to remember is to also move everything out
+of a mono repo like this. Instead, It should all be their own individual repo's
+for CI/CD to work properly. My plan is to use submodules/trees to link this repo
+to the sub repo's
