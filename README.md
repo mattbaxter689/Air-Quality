@@ -55,6 +55,10 @@ them hear for each directory
 - [ ] add models to flag if delta meets threshold
 - [ ] Add API logs to grafana application
 
+#### weather_prefect
+- [ ] add cold start flow on a weekly/monthly basis
+- [ ] uncomment warm/cold-start tasks
+
 I also want to look to potentially include github actions, but want to finish
 everything else before I jump to this. Although, time will tell. 
 
