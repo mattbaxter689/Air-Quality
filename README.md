@@ -37,6 +37,8 @@ make that didn't fit in the initial scope of the project. For now, I will list
 them hear for each directory
 
 #### torch_weather
+The code for this has changed and can be found [here](https://github.com/mattbaxter689/Air-Quality-LSTM)
+
  - [ ] Including real-time predictions using kafka streaming. Will result in
    backfilling predictions with actual data to compare as time goes on
  - [ ] Warm vs cold starts: Depending on the amount of drift detected (from
@@ -46,18 +48,31 @@ them hear for each directory
  - [ ] multi-output LSTM rather than single target.
 
  #### rust_kafka
+The code for this has changed and can be found [here](https://github.com/mattbaxter689/Rust-Weather)
+ 
 - [ ] Add persistable trait for the database insert functionality
 - [ ] Add a generic retry function for API and database inserts
 - [ ] Add streaming for 12 past hours to predict next hours AQI
 
 #### dbt_weather
+The code for this has changed and can be found [here](https://github.com/mattbaxter689/DBT-Air-Quality)
 - [ ] Add lag models comparing previous time stamps data
 - [ ] add models to flag if delta meets threshold
 - [ ] Add API logs to grafana application
 
 #### weather_prefect
+The code for this has changed and can be found [here](https://github.com/mattbaxter689/Prefect-Air-Quality)
+
 - [ ] add cold start flow on a weekly/monthly basis
 - [ ] uncomment warm/cold-start tasks
+
+#### weather_api
+The code for this has changed and can be found [here](https://github.com/mattbaxter689/Air-Quality-API)
+
+- [ ] Improvement validation
+- [ ] Incorporate API keys or some other level of authentication
+- [ ] Possibly use Nginx?
+- [ ] Look to deploy on cloud platform
 
 I also want to look to potentially include github actions, but want to finish
 everything else before I jump to this. Although, time will tell. 
