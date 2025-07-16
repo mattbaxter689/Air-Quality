@@ -1,5 +1,0 @@
-/target
-config.toml
-.env
-logs/consumer.log
-logs/producer.log
