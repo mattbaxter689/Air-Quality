@@ -58,9 +58,13 @@ as time goes on and I revisit this project, there are some topics I would like t
 - [ ] Add a generic retry function for API and database inserts
 
 #### dbt_weather
+The code for this has changed and can be found [here](https://github.com/mattbaxter689/DBT-Air-Quality)
 - [ ] Add lag models comparing previous time stamps data
 - [ ] add models to flag if delta meets threshold
 - [ ] Add API logs to grafana application
+
+#### api
+- [ ] Explore rate-limiting use Nginx or Redis
 
 #### weather_prefect
 - [ ] add cold start flow on a weekly/monthly basis
