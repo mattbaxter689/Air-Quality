@@ -1,24 +1,37 @@
-# Rusty-Weather
+# Air Quality
 
-This project is an accumulation of me wanting to expand my horizons and
-familiarize myself with technologies I do not necessarily get exposed to while
-working my regular dayjob. There are fairly lofty goals for what this project
-entails, but I'm hoping that over several weeks, I will be able to implement the
-main goal of this project, while being able to take it a step further down the
-line.
+This project started out as me wanting to take something on to prove to myself that I am fully capable as 
+a data practitioner to build something on this scale. While this project seems small compared to what is actually performed in industry,
+I did each and every single one of these steps myself which would typically involve multiple disciplines in order to get it 
+to the state it is currently in. I'm incredibly proud of what I have accomplished, and I definitely learned more about myself as a developer,
+as well as tools used in industry. Because of this, I've gained far more confidence in my abilities than I have in any other project I have ever
+worked on. There were many days of frustration, but this final product has been so incredibly worth it.
 
-This is also a good time to remind myself to include a flow diagram as part of
-this application. The subdirectories here do the following:
+The main inspiration for this project comes from both my wife and I having sensitive allergies, especailly during the early to mid-summer.
+Unfortunately, pollen information is not available for my area from the API that was used, however, I spun this project to instead focus on modelling
+air quality. Though allergies are annoying, modelling air quality has significant benefits, especially for those who are at risk of health issues or concerns due to poor air quality. As global warming increases, the resulting forest fires in Western Canada are becoming far more frequent. As that air travels across the country, it can greatly affect the air quality, even across the country. Having a tool like this can inform at-risk populations and when to take precautions to avoid any other harm.
 
-The inspiration for this project comes from my wife and I both having sensitive
-allergies, with the goal to predict air quality, and hopefully one day, expand
-to pollen information should it become available. I have also worked with this
-type of flow in separate stages cross different projects, but I wanted to set
-something up from end-to-end to prove to myself that I can do it, since imposter
-syndrome can bog you down.
+While I have worked on some pieces of this project more in-depth than others, I wanted to fully build something end-to-end myself for two reasons:
+1) To explore other topics I'm not as familiar with and gain a better understanding of how to perform said tasks
+2) To help myself understand technologies that I have wanted to use, but never got the chance to
 
-Each repository will contain a separate README file that will dive into what it
-handles and how to run everything.
+Since starting this project, I can comfortably say I have exceeded my expectations of myself when first planning.
+
+My initial design split each component of this project into separate repositories, so as to separate the code
+from each portion. The main reasoning for this is that each component covers a different discipline in 
+the data world. The table below lays out the various pieces that make up this entire project, as well
+as the discipline the repository focuses on
+
+| Repo Name  | Discipline  |  Repo Link  |  Description |
+|:-:|:-:|:-:|---|
+|  Air Quality Infrastructure | DevOps/MLOps  | [Infra](https://github.com/mattbaxter689/Air-Quality-Infrastructure)  | Infrastructure for deploying in cloud  |
+|  Rust Air Quality |  Data Engineering | [Rust](https://github.com/mattbaxter689/Rust-Air-Quality)  | Data ingestion with Rust and Kafka  |
+| Air Quality LSTM  | ML Engineering  | [Model](https://github.com/mattbaxter689/Air-Quality-LSTM)  | Model fitting and logging with PyTorch  |
+| Air Quality API  | MLOps  | [API](https://github.com/mattbaxter689/Air-Quality-API)  | FastAPI to host prediction for model  |
+|  DBT Air Quality | Data Analysis  | [DBT](https://github.com/mattbaxter689/DBT-Air-Quality)  | Using dbt for some simple transformations  |
+| Prefect Air Quality  | All of the Above  |  [Prefect](https://github.com/mattbaxter689/Prefect-Air-Quality) | Using Prefect to trigger model training and dbt model refresh  |
+
+Each repository also contains it's own individual documentation about the resulting code contained, as well as some instructions on how the process works. This documentation is more in-depth to the specific task, which should better answer any questions.
 
 ## Note: uv Package Manager
 Something I wish to highlight is that for the dbt, pytorch model, and API code,
@@ -29,26 +42,20 @@ just needs a few additional packages added, and I did not want to go through the
 headache of configuring uv in that environment.
 
 ### Future Enhancements:
-Now, just because this project is "finished" does not mean I am going to leave
-it alone from here on. Instead, I want to use this project as a focal point, and
-continuously improve upon it as time goes on. It is technically "finished" from
-my initial designs for the project, however there are improvements I want to
-make that didn't fit in the initial scope of the project. For now, I will list
-them hear for each directory
+For this project, aside from a few additional pieces that I need to finish, this project is in a state I will call "finished". 
+I don't want to mark it as fully complete because there are some enhancements or things that I would eventually like to add as time
+goes on. I have definitely exceeded from what I initially planned to do, and I'm so proud of myself for putting together a project
+like this. It took many weeks to be able to even get to this point, so it is a great feeling knowing that I already got it here. That being said,
+as time goes on and I revisit this project, there are some topics I would like to explore. Some of them are below, along with some small pieces that need to be added to meet my goal for now.
 
 #### torch_weather
- - [ ] Including real-time predictions using kafka streaming. Will result in
-   backfilling predictions with actual data to compare as time goes on
  - [ ] Warm vs cold starts: Depending on the amount of drift detected (from
    evidently) warm or cold start the model. Cold start on everything, warm start
    on 120 days of data using previous model parameters. Log parameters of final
    model, and inject variable to image to use
- - [ ] multi-output LSTM rather than single target.
 
  #### rust_kafka
-- [ ] Add persistable trait for the database insert functionality
 - [ ] Add a generic retry function for API and database inserts
-- [ ] Add streaming for 12 past hours to predict next hours AQI
 
 #### dbt_weather
 - [ ] Add lag models comparing previous time stamps data
@@ -57,18 +64,3 @@ them hear for each directory
 
 #### weather_prefect
 - [ ] add cold start flow on a weekly/monthly basis
-- [ ] uncomment warm/cold-start tasks
-
-I also want to look to potentially include github actions, but want to finish
-everything else before I jump to this. Although, time will tell. 
-
-Another *VERY* important thing for me to remember is to also move everything out
-of a mono repo like this. Instead, It should all be their own individual repo's
-for CI/CD to work properly. My plan is to use submodules/trees to link this repo
-to the sub repo's
-
-I would also like to possibly explore cloud infrastructure for parts of this
-application at some point. Whether it's spinning up the TimescaleDB instance or
-Grafana, I'd like to explore cloud to host to dip my toes back into it again
-after not touching it for some time. I can also explain as time goes on how each
-service could be deployed as well
