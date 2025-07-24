@@ -31,7 +31,7 @@ as the discipline the repository focuses on
 |  DBT Air Quality | Data Analysis  | [DBT](https://github.com/mattbaxter689/DBT-Air-Quality)  | Using dbt for some simple transformations  |
 | Prefect Air Quality  | All of the Above  |  [Prefect](https://github.com/mattbaxter689/Prefect-Air-Quality) | Using Prefect to trigger model training and dbt model refresh  |
 
-Each repository also contains it's own individual documentation about the resulting code contained, as well as some instructions on how the process works. This documentation is more in-depth to the specific task, which should better answer any questions.
+Each repository also contains it's own individual documentation about the resulting code contained, as well as some instructions on how the process works. This documentation is more in-depth to the specific task, which should better answer any questions. I also plan to add a flow diagram to each repository to show the flow of data throughout, so I will add those when I get the chance to.
 
 ## Note: uv Package Manager
 Something I wish to highlight is that for the dbt, pytorch model, and API code,
@@ -58,7 +58,6 @@ as time goes on and I revisit this project, there are some topics I would like t
 - [ ] Add a generic retry function for API and database inserts
 
 #### dbt_weather
-The code for this has changed and can be found [here](https://github.com/mattbaxter689/DBT-Air-Quality)
 - [ ] Add lag models comparing previous time stamps data
 - [ ] add models to flag if delta meets threshold
 - [ ] Add API logs to grafana application
