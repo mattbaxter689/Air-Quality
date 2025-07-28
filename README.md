@@ -49,7 +49,7 @@ like this. It took many weeks to be able to even get to this point, so it is a g
 as time goes on and I revisit this project, there are some topics I would like to explore. Some of them are below, along with some small pieces that need to be added to meet my goal for now.
 
 #### torch_weather
- - [ ] Warm vs cold starts: Depending on the amount of drift detected (from
+ - [x] Warm vs cold starts: Depending on the amount of drift detected (from
    evidently) warm or cold start the model. Cold start on everything, warm start
    on 120 days of data using previous model parameters. Log parameters of final
    model, and inject variable to image to use
@@ -66,4 +66,4 @@ as time goes on and I revisit this project, there are some topics I would like t
 - [ ] Explore rate-limiting use Nginx or Redis
 
 #### weather_prefect
-- [ ] add cold start flow on a weekly/monthly basis
+- [x] add cold start flow on a weekly/monthly basis
