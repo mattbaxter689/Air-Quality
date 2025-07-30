@@ -55,15 +55,19 @@ as time goes on and I revisit this project, there are some topics I would like t
    model, and inject variable to image to use
 
  #### rust_kafka
-- [ ] Add a generic retry function for API and database inserts
+- [ ] Add a generic retry function for API and database inserts (Not necessary
+  at this point. I do want to explore further, but in real scenarios, yes there
+  should be retry logic in place)
 
 #### dbt_weather
 - [ ] Add lag models comparing previous time stamps data
 - [ ] add models to flag if delta meets threshold
 - [ ] Add API logs to grafana application
+- [ ] Add github actions
 
 #### api
-- [ ] Explore rate-limiting use Nginx or Redis
+- [x] Explore rate-limiting use Nginx or Redis
 
 #### weather_prefect
 - [x] add cold start flow on a weekly/monthly basis
+- [ ] Add github actions?
