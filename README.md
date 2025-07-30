@@ -62,12 +62,13 @@ as time goes on and I revisit this project, there are some topics I would like t
 #### dbt_weather
 - [ ] Add lag models comparing previous time stamps data
 - [ ] add models to flag if delta meets threshold
-- [ ] Add API logs to grafana application
-- [ ] Add github actions
+- [ ] Make `profiles.yml` reference db params as environment variables for build
+  time
+- [x] Add github actions
 
 #### api
 - [x] Explore rate-limiting use Nginx or Redis
 
 #### weather_prefect
 - [x] add cold start flow on a weekly/monthly basis
-- [ ] Add github actions?
+- [ ] Add github actions for agent code
